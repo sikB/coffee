@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order</title>
+
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css"> -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Molle:400italic|Courgette">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="contaner-fluid">
+    		<div class="col-sm-6 headerImg">
+    		<a href="/">
+    		<img src="images/logo2.png"/>
+    		</a>
+    		</div>
+    	<div class="col-sm-6 buttonsToFloat">
+    		<a href="/login">
+    			<button class="btn btn-primary" type="submit">Log In</button>
+    		</a>
+    		<a href="/register">
+    			<button class="btn btn-primary" type="submit">Register</button>
+    		</a>
+    	</div>
+  		</div>
+  	<div class="row">
+    	<div class="col-sm-12 description">
+      		<h1>A better way to enjoy your favorite cigar</h1>
+     	 	<h4>Freshly rolled cigars delivered weekly to your door</h4>
+    	</div>
+  </div>
+	</nav>
+	<div class="container-fluid orderPage">
+  <div class="row">
+    <div class="col-sm-12 orderHeading">
+      <h1 class="orderText">Tell us what you want</h1>
+      <h4>Shipping is free and you can skip any week</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 quantity col-sm-offset-2">
+      <h1>Single Weekly Plan</h1>
+      <h3>For the smoker who enjoys cigars alone</h3><img src="images/colors.jpeg" class="five"/>
+      <p>Cigars a day: 1</p>
+      <p>Price per Cigar: $4</p>
+      <p>Weekly total: $20</p>
+      <button type="button" class="btn btn-success">Order this Deal</button>
+    </div>
+    <div class="col-sm-4 bulk">
+      <h1>Party Weekly Plan</h1>
+      <h3>For the smoker who likes to share with friends</h3><img src="images/bulker.jpg" class="bulker"/>
+      <p>Cigars a day: 4</p>
+      <p>Price per Cigar: $3</p>
+      <p>Weekly total: $60</p>
+      <button type="button" class="btn btn-success">Order this Deal</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 customHeader">
+      <h1>Or choose a custom order!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 customOrder">
+      <h3>Choose the flavor</h3>
+      <div class="form-group col-sm-4 col-sm-offset-4">
+        <select class="form-control selector">
+          <option>Dark/Robust</option>
+          <option>Medium</option>
+          <option>Light</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <h3>Choose the length of the smoke</h3>
+      <div class="form-group col-sm-4 col-sm-offset-4">
+        <select class="form-control">
+          <option>1hr</option>
+          <option>45min - 1hr</option>
+          <option>>45min</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <h3>Choose shape</h3>
+      <div class="form-group col-sm-4 col-sm-offset-4">
+        <select class="form-control">
+          <option>Corona</option>
+          <option>Petit Corona</option>
+          <option>Churchill</option>
+          <option>Robusto</option>
+          <option>Corona Gorda</option>
+          <option>Double Corona</option>
+          <option>Panetela</option>
+          <option>Lonsdale</option>
+          <option>Pyramid</option>
+          <option>Belicoso</option>
+          <option>Torpedo</option>
+          <option>Perfecto</option>
+          <option>Culebra</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="btn btn-success">Order Custom Deal</button>
+  </div>
+</div>
+	<footer class="col-sm-12 text-center">
+		<p>&copy Sik Marketing 2016 | Bogdan Sikhovski</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* line 1, ../../Compass/sass/_base.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 1, ../../Compass/sass/_home.scss */
+body {
+  font-family: 'Courgette', cursive;
+}
+
+/* line 4, ../../Compass/sass/_home.scss */
+.navbar {
+  background-color: #284741;
+}
+
+/* line 7, ../../Compass/sass/_home.scss */
+.headerImg {
+  max-width: 11%;
+}
+
+/* line 10, ../../Compass/sass/_home.scss */
+.buttonsToFloat {
+  float: right;
+  margin-right: -35%;
+}
+
+/* line 14, ../../Compass/sass/_home.scss */
+.step-one {
+  background-color: #ecffb3;
+  margin-top: 11%;
+}
+
+/* line 18, ../../Compass/sass/_home.scss */
+.description {
+  color: white;
+  text-align: center;
+  margin-top: -6%;
+}
+
+/* line 23, ../../Compass/sass/_home.scss */
+.step-two {
+  text-align: right;
+  background-color: #cccc00;
+  margin-top: 1%;
+}
+
+/* line 28, ../../Compass/sass/_home.scss */
+.step-three {
+  text-align: center;
+  background-color: #86b300;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+/* line 34, ../../Compass/sass/_home.scss */
+.get-started {
+  text-align: center;
+}
+
+/* line 37, ../../Compass/sass/_home.scss */
+footer {
+  margin-top: 2%;
+}
+
+/* line 40, ../../Compass/sass/_home.scss */
+.rolling {
+  max-width: 24%;
+  position: absolute;
+  top: 8%;
+  right: 6%;
+}
+
+/* line 46, ../../Compass/sass/_home.scss */
+.colors {
+  max-width: 25%;
+  position: absolute;
+  top: 10%;
+  left: 4%;
+}
+
+/* line 52, ../../Compass/sass/_home.scss */
+.qc {
+  max-width: 28%;
+  position: absolute;
+  top: 17%;
+  left: 6%;
+}
+
+/* line 58, ../../Compass/sass/_home.scss */
+.room {
+  max-width: 18%;
+  position: absolute;
+  top: 17%;
+  right: 4%;
+}
+
+/* line 66, ../../Compass/sass/_home.scss */
+.female_smoking {
+  max-width: 25%;
+}
+
+/* line 69, ../../Compass/sass/_home.scss */
+.smokers {
+  margin-bottom: 2%;
+}
+
+/* line 72, ../../Compass/sass/_home.scss */
+.registration {
+  margin-top: 10%;
+}
+
+/* line 75, ../../Compass/sass/_home.scss */
+.failure {
+  color: red;
+  text-align: center;
+}
+
+/* line 79, ../../Compass/sass/_home.scss */
+.orderPage {
+  text-align: center;
+}
+
+/* line 82, ../../Compass/sass/_home.scss */
+.orderHeading {
+  margin-top: 10%;
+  padding-bottom: 3%;
+}
+
+/* line 86, ../../Compass/sass/_home.scss */
+.quantity {
+  border: 1px solid black;
+  padding-bottom: 3%;
+}
+
+/* line 90, ../../Compass/sass/_home.scss */
+.bulk {
+  border: 1px solid black;
+  padding-bottom: 3%;
+}
+
+/* line 94, ../../Compass/sass/_home.scss */
+.bulker {
+  width: 88%;
+}
+
+/* line 97, ../../Compass/sass/_home.scss */
+.userName {
+  color: white;
+  margin-top: 1%;
+}
+
+/* line 101, ../../Compass/sass/_home.scss */
+.logIn {
+  margin-top: 15%;
+}
+
+/* line 104, ../../Compass/sass/_home.scss */
+.logInHeader {
+  text-align: center;
+}
