@@ -7,60 +7,51 @@ var bcrypt = require('bcrypt-nodejs');
 
 mongoose.connect(mongoUrl);
 
-
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.get('/register', function(req,res,next){
-	res.render('register', {page: 'register'});
-});
-
-router.post('/registerProcessed', function(req,res,next){
+router.post('/register', function(req,res,next){
+	// res.json(req.body)
 	var userName = req.body.userName;
 	var password = req.body.password;
 	var password2 = req.body.password2;
 	var emailAddress = req.body.emailAddress;
 	if(password == password2){
-		var hashedPass = bcrypt.hashSync(password);
+		var hashedPass = bcrypt.hashSync(req.body.password);
 		var newAccount = new Account({
-			userName: userName,
+			userName: req.body.userName,
 			password: hashedPass,
-			emailAddress: emailAddress
+			emailAddress: req.body.emailAddress
 		});
+		console.log(newAccount);
 		newAccount.save();
-		req.session.userName = userName;
-		res.redirect('/order');
+		req.session.userName = req.body.userName;
+		res.json({
+			success: 'added'
+		})
 	}else{
-		res.redirect('/register?failure=password');
+		res.json({failure: 'passwordsMatch'});
 	}
 });
-
-router.get('/order', function(req,res,next){
-	res.render('order', {userName: req.session.userName, page: 'order'});
-});
-
-router.get('/logIn', function(req,res,next){
-	res.render('logIn', {page: 'login'});
-});
-router.post('/logIn', function(req,res,next){
-	var userName = req.body.userName;
-	var password = req.body.password;
+router.post('/login', function(req,res,next){	// var userName = req.body.userName;
+	// var password = req.body.password;
 	// var hashedPass = bcrypt.hashSync(password);
 	Account.findOne({
-		userName: userName,
+		userName: req.body.userName},
 		function(error, doc){
-			var passwordsMatch = bcrypt.compareSync(password, doc.password);
-			if(passwordsMatch){
-				res.redirect('order');
+			if(doc == null){
+				res.json({failure: 'noUser'});
 			}else{
-				res.redirect('login');
+				console.log(req.body.password);
+				var passwordsMatch = bcrypt.compareSync(req.body.password, doc.password);
+				if(passwordsMatch){
+					req.session.userName = req.body.userName;
+					res.json({
+						success: 'found!'
+					});
+				}else{
+					res.json({
+						failure: "badPassword"
+					});
 			}
-
 		}
-	})
+	});
 });
-
 module.exports = router;
