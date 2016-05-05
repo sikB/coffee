@@ -13,7 +13,9 @@
       <p>Cigars a day: 1</p>
       <p>Price per Cigar: $4</p>
       <p>Weekly total: $20</p>
-      <button type="button" class="btn btn-success">Order this Deal</button>
+      <a href="/#/delivery">
+        <button type="button" ng-submit="orderSingle()" class="btn btn-success">Order this Deal</button>
+      </a>
     </div>
     <div class="col-sm-4 bulk">
       <h1>Party Weekly Plan</h1>
@@ -21,7 +23,9 @@
       <p>Cigars a day: 4</p>
       <p>Price per Cigar: $3</p>
       <p>Weekly total: $60</p>
-      <button type="button" class="btn btn-success">Order this Deal</button>
+      <a href="/#/delivery">
+        <button type="button" ng-submit="partyPlan()" class="btn btn-success">Order this Deal</button>
+      </a>
     </div>
   </div>
   <div class="row">
@@ -70,7 +74,9 @@
         </select>
       </div>
     </div>
-    <button type="button" class="btn btn-success">Order Custom Deal</button>
+    <a href="/#/delivery">
+      <button type="button" class="btn btn-success">Order Custom Deal</button>
+    </a>
   </div>
 </div>
 </body>

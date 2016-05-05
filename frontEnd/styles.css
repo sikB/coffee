@@ -3,6 +3,9 @@ img {
   max-width: 100%;
 }
 
+.delivery{
+  margin-top: 10%;
+}
 /* line 1, ../../Compass/sass/_home.scss */
 body {
   font-family: 'Courgette', cursive;
@@ -12,12 +15,27 @@ body {
 .navbar {
   background-color: #284741;
 }
+.choices{
+  background-color: #fff2cc;
+  border: 1px solid black;
+}
+.choicesHeader{
+  text-decoration: underline;
+}
+.boldTotal{
+  font-weight: bold;
+}
+.checkout-buttons{
+  margin-top: 2%;
+}
 
 /* line 7, ../../Compass/sass/_home.scss */
 .headerImg {
   max-width: 11%;
 }
-
+.checkout-page{
+  margin-top: 10%;
+}
 /* line 10, ../../Compass/sass/_home.scss */
 .buttonsToFloat {
   float: right;
@@ -160,5 +178,8 @@ footer {
 }
 .errorMessage{
   text-align: center;
+  color: red;
+}
+.warning{
   color: red;
 }

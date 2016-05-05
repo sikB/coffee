@@ -4,6 +4,7 @@ var mongoUrl = 'mongodb://localhost:27017/coffee';
 var mongoose = require('mongoose');
 var Account = require('../models/accounts');
 var bcrypt = require('bcrypt-nodejs');
+var randToken = require('rand-token');
 
 mongoose.connect(mongoUrl);
 
@@ -16,23 +17,22 @@ router.post('/register', function(req,res,next){
 	if(password == password2){
 		var hashedPass = bcrypt.hashSync(req.body.password);
 		var newAccount = new Account({
-			userName: req.body.userName,
+			userName: userName,
 			password: hashedPass,
-			emailAddress: req.body.emailAddress
+			emailAddress: emailAddress,
+			token: token
 		});
-		console.log(newAccount);
 		newAccount.save();
-		req.session.userName = req.body.userName;
+		var token = randToken.generate(32);
 		res.json({
-			success: 'added'
+			success: 'added',
+			token: token
 		})
 	}else{
 		res.json({failure: 'passwordsMatch'});
 	}
 });
-router.post('/login', function(req,res,next){	// var userName = req.body.userName;
-	// var password = req.body.password;
-	// var hashedPass = bcrypt.hashSync(password);
+router.post('/login', function(req,res,next){
 	Account.findOne({
 		userName: req.body.userName},
 		function(error, doc){
@@ -42,9 +42,10 @@ router.post('/login', function(req,res,next){	// var userName = req.body.userNam
 				console.log(req.body.password);
 				var passwordsMatch = bcrypt.compareSync(req.body.password, doc.password);
 				if(passwordsMatch){
-					req.session.userName = req.body.userName;
+					// var token = randToken.generate(32);
 					res.json({
-						success: 'found!'
+						success: 'found!',
+						token: doc.token
 					});
 				}else{
 					res.json({

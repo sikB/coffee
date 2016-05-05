@@ -1,0 +1,48 @@
+<body>
+
+	<div class="container delivery">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<h1 class="deiveryHeader">Please enter your shipping address</h1>
+				<h3 class="addressHeader">Address</h3>
+			</div>
+		</div>
+		<div class="row">
+	    	<div class="col-sm-4 col-sm-offset-4 registration-wrapper text-center">
+	    		<form role="form" ng-submit="deliveryForm(this)" id="delivery-form" name="delivery">
+	    			<div class="form-group">
+			          <label>Full Name</label>
+			          <input type="text" ng-model="userName" placeholder="Jon Smith" minlength="5" class="form-control" required="userName" />
+			        </div>
+			        <div class="form-group">
+			          <label>Address Line 1</label>
+			          <input type="address" ng-model="address" placeholder="123 Main Street" class="form-control" required="address" />
+			        </div>
+			        <div class="form-group">
+			          <label>Address Line 2</label>
+			          <input type="text" ng-model="address2" placeholder="Suite 250" class="form-control"/>
+			        </div>
+			        <div class="form-group">
+			          <label>City</label>
+			          <input type="text" ng-model="city" placeholder="Atlanta" class="form-control" required="city"/>
+			        </div>
+			        <div class="form-group">
+			          <label>State</label>
+			          <input type="text" ng-model="state" placeholder="GA" class="form-control" required="state" />
+			        </div>
+			        <div class="form-group">
+			          <label>Zip Code</label>
+			          <input type="text" ng-model="zipCode" placeholder="30324" class="form-control" required="zipCode" />
+			        </div>
+			        <div class="form-group">
+			          <label>Delivery Date</label>
+			          <input type="date" ng-model="date" placeholder="Min 6 Characters" minlength="6" class="form-control" required="date" />
+			        </div>
+			        <div class="checkOut">
+					     <button type="button" ng-submit="proceed2Checkout()" class="btn btn-success">Proceed to Checkout</button>
+			        </div>
+			    </form>
+			</div>
+		</div>
+	</div>
+</body>

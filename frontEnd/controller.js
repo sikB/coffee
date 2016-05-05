@@ -1,14 +1,15 @@
-var angularCigars = angular.module('angularCigars', ['ngRoute']);
-angularCigars.controller('cigarController', function($scope, $http, $location){
-	// var apiUrl = 'http://localhost:3000/coffee';
+var angularCigars = angular.module('angularCigars', ['ngRoute', 'ngCookies']);
+angularCigars.controller('cigarController', function($scope, $http, $location, $cookies){
+	var apiUrl = 'http://localhost:3000/';
 
 	$scope.loginForm = function(){
-		$http.post('http://localhost:3000/login', {
+		$http.post(apiUrl + 'login', {
 			userName: $scope.userName,
 			password: $scope.password
 		}).then(function successCallback(response){
-			console.log(response.data)
 			if(response.data.success == 'found!'){
+				$cookies.put('token', response.data.token);
+				$cookies.put('userName', $scope.userName);
 				$location.path('/order');
 			}else if(response.data.failure == 'noUser'){
 				$scope.errorMessage = 'No such user found'
@@ -21,7 +22,7 @@ angularCigars.controller('cigarController', function($scope, $http, $location){
 	}
 
 	$scope.registerForm = function(form){
-		$http.post('http://localhost:3000/register', {
+		$http.post(apiUrl + 'register', {
 			userName: $scope.userName,
 			password: $scope.password,
 			password2: $scope.password2,
@@ -30,6 +31,8 @@ angularCigars.controller('cigarController', function($scope, $http, $location){
 			if(response.data.failure == 'passwordsMatch'){
 				$scope.errorMessage = "Your passwords must match";
 			}else if(response.data.success == "added"){
+				$cookies.put('token', response.data.token);
+				$cookies.put('userName', $scope.userName);
 				$location.path('/order');
 			}
 		}, function errorCallback(response){
@@ -50,6 +53,12 @@ angularCigars.config(function($routeProvider) {
         controller: 'cigarController'
     }).when('/login', {
         templateUrl: "login.html",
+        controller: 'cigarController'
+    }).when('/delivery', {
+        templateUrl: "delivery.html",
+        controller: 'cigarController'
+    }).when('/checkout', {
+        templateUrl: "checkout.html",
         controller: 'cigarController'
     })    
 });
