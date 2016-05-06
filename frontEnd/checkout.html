@@ -11,11 +11,11 @@
 				<div class="col-sm-6 choices col-sm-offset-3">
 				<h3 class="choicesHeader">Choices</h3>
 					<p class="col-sm-4">Type</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.type}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{shape}}</p>
 					<p class="col-sm-4">Frequency of Delivery</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.frequency}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{frequency}}</p>
 					<p class="col-sm-4">Cigars a week</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.numberCigars}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{numberCigars}}</p>
 				</div>
 			</div>
 		</div>
@@ -24,19 +24,19 @@
 				<div class="col-sm-6 choices col-sm-offset-3">
 				<h3 class="choicesHeader">Delivery Information</h3>
 					<p class="col-sm-4">Full Name</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.fullName}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{fullName}}</p>
 					<p class="col-sm-4">Address</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.address}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{address}}</p>
 					<p class="col-sm-4">Address 2</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.address2}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{address2}}</p>
 					<p class="col-sm-4">City</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.city}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{city}}</p>
 					<p class="col-sm-4">State</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.state}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{state}}</p>
 					<p class="col-sm-4">Zip Code</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.zip}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{zipCode}}</p>
 					<p class="col-sm-4">Delivery Date</p>
-					<p class="col-sm-4 col-sm-offset-3">{{$scope.deliveryDate}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{date}}</p>
 				</div>
 			</div>
 		</div>
@@ -55,7 +55,18 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-5 checkout-buttons">
-				<button type="button" ng-click='checkOut' class="btn btn-primary">Pay with card</button>
+				<!-- <button type="button" ng-click='checkOut()' class="btn btn-primary">Pay with card</button> -->
+		<form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_xUwaUiQX4cjUc70hG3kFQ7iB"
+    data-amount="999"
+    data-name="Demo Site"
+    data-description="Widget"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form>
 				<button type="button" class="btn btn-danger">Cancel</button>
 			</div>
 		</div>

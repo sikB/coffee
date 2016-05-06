@@ -2,10 +2,14 @@ var angularCigars = angular.module('angularCigars', ['ngRoute', 'ngCookies']);
 angularCigars.controller('cigarController', function($scope, $http, $location, $cookies){
 	var apiUrl = 'http://localhost:3000/';
 
+	// if($location.path() != 'register' || 'login'){
+	// 	$location.path('homePage');
+	// }else{
+
 	$http.get(apiUrl + 'getUserData?token=' + $cookies.get('token'),{
 	}).then(function successCallback(response){
 		if(response.data.failure == 'badToken'){
-			$location.path('register');
+			$location.path('login');
 		}else{
 		$scope.userOrder = response.data
 		// response.data; use this instead of the below because i only have one controller
@@ -13,77 +17,81 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 		console.log(response.status);
 	}
 	});
+// }
 
-	$scope.shape = [
-		  {option: 'Corona'},
-          {option: 'Petit Corona'},
-          {option: 'Churchill'},
-          {option: 'Robusto'},
-          {option:'Corona Gorda'},
-          {option: 'Double Corona'},
-          {option:'Panetela'},
-          {option: 'Lonsdale'},
-          {option: 'Pyramid'},
-          {option:'Belicoso'},
-          {option: 'Torpedo'},
-          {option:'Perfecto'},
-          {option: 'Culebra'}
-	];
+	// $scope.shape = [
+	// 	  {option: 'Corona'},
+ //          {option: 'Petit Corona'},
+ //          {option: 'Churchill'},
+ //          {option: 'Robusto'},
+ //          {option:'Corona Gorda'},
+ //          {option: 'Double Corona'},
+ //          {option:'Panetela'},
+ //          {option: 'Lonsdale'},
+ //          {option: 'Pyramid'},
+ //          {option:'Belicoso'},
+ //          {option: 'Torpedo'},
+ //          {option:'Perfecto'},
+ //          {option: 'Culebra'}
+	// ];
 
-	$scope.flavor = [
-	{option: 'Dark/Robust'},
-	{option: 'Medium'},
-	{option: 'Light'}
-	];
+	// $scope.flavor = [
+	// {option: 'Dark/Robust'},
+	// {option: 'Medium'},
+	// {option: 'Light'}
+	// ];
 
-	$scope.smokeLength = [
-		{option: "1hr"},
-		{option: '45min - 1hr'},
-		{option: '>45min'}
-	];
+	// $scope.smokeLength = [
+	// 	{option: "1hr"},
+	// 	{option: '45min - 1hr'},
+	// 	{option: '>45min'}
+	// ];
 
-	$scope.frequency = [
-		{option: 'Once a week'},
-		{option: "Every other week"},
-		{option: "Once a month"}
-	];
+	// $scope.frequency = [
+	// 	{option: 'Once a week'},
+	// 	{option: "Every other week"},
+	// 	{option: "Once a month"}
+	// ];
 
-	$scope.flavor = $cookies.get('flavor');
-	$scope.quantity = $cookies.get('quantity');
-	$scope.shape = $cookies.get('shape');
-	$scope.smokeLength = $cookies.get('smokeLength');
-	$scope.fullName = $cookies.get('fullName');
-	$scope.address = $cookies.get('address');
-	$scope.address2 = $cookies.get('address2');
-	$scope.city = $cookies.get('city');
-	$scope.state = $cookies.get('state');
-	$scope.zip = $cookies.get('zip');
-	$scope.deliveryDate = $cookies.get('deliveryDate');
-	$scope.total = Number($scope.quantity) * 20.00;
+	// $scope.flavor = $cookies.get('flavor');
+	// $scope.quantity = $cookies.get('quantity');
+	// $scope.shape = $cookies.get('shape');
+	// $scope.smokeLength = $cookies.get('smokeLength');
+	// $scope.fullName = $cookies.get('fullName');
+	// $scope.address = $cookies.get('address');
+	// $scope.address2 = $cookies.get('address2');
+	// $scope.city = $cookies.get('city');
+	// $scope.state = $cookies.get('state');
+	// $scope.zip = $cookies.get('zip');
+	// $scope.deliveryDate = $cookies.get('deliveryDate');
+	// $scope.total = Number($scope.quantity) * 20.00;
 
 	$scope.proceed2Checkout = function(){
-			$http({
-			method: 'POST',
-			url: apiUrl + 'delivery',
-			data: {
-				token: $cookies.get('token')
-			}
+			$http.post(apiUrl + 'delivery',{
+				token: $cookies.get('token'),
+				fullName: $scope.fullName,
+				address: $scope.address,
+				address2 : $scope.address2,
+				city: $scope.city,
+				state: $scope.state,
+				zipCode: $scope.zipCode,
+				date: $scope.date
 		}).then(function successCallback(response){
-			if (response.data.failure == 'noToken'){
+			if (response.data.failure == 'failedUpdate'){
 					// invalid token, so redirect to login page
-					$location.path('/login');
-				} else if (response.data.success = 'tokenMatch') {
+					$location.path('login');
+				} else if (response.data.success == 'updated') {
 					// put the delivery info into cookies for temporary storage
 					$cookies.put('fullName', $scope.fullName);
 					$cookies.put('address', $scope.address);
 					$cookies.put('address2', $scope.address2);
 					$cookies.put('city', $scope.city);
 					$cookies.put('state', $scope.state);
-					$cookies.put('zip', $scope.zip);
-					$cookies.put('deliveryDate', $scope.deliveryDate);
+					$cookies.put('zipCode', $scope.zipCode);
+					$cookies.put('date', $scope.date);
 
 					//redirect to checkout page
-					$location.path('/checkout');
+					$location.path('checkout');
 				}
 		}, function errorCallback(status){
 			console.log(status);
@@ -95,19 +103,19 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 			flavor: $scope.flavor,
 			smokeLength: $scope.smokeLength,
 			shape: $scope.shape,
+			frequency: $scope.frequency,
 			token: $cookies.get('token')
 		}).then(function successCallback(response){
-			if(response.data.failure == 'noToken'){
+			if(response.data.failure == 'failedUpdate'){
 				console.log('test');
-				$location.path('/login');
-			}else if(response == 'tokenMatch'){
-				console.log('test');
+				$location.path('login');
+			}else if(response.data.success == 'updated'){
+				console.log('success');
 				$cookies.put('flavor', $scope.flavor);
 				$cookies.put('smokeLength', $scope.smokeLength);
 				$cookies.put('shape', $scope.shape);
 				$cookies.put('frequency', $scope.frequency);
-				console.log($scope.shape);
-				$location.path('/delivery');
+				$location.path('delivery');
 			}
 		}, function errorCallback(response){
 			console.log(response);
@@ -121,10 +129,10 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 	$scope.partyPlan = function(){
 		console.log('test2');
 	}
-	$scope.logOut = function($scope, $cookies){
-		$cookies.remove('token');
-		$cookies.remove('username');
-	}
+	// $scope.logOut = function($scope, $cookies){
+	// 	$cookies.remove('token');
+	// 	$cookies.remove('username');
+	// }
 
 
 	$scope.loginForm = function(){
@@ -159,10 +167,10 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 			}else if(response.data.success == "added"){
 				$cookies.put('token', response.data.token);
 				$cookies.put('userName', $scope.userName);
-				$location.path('/order');
+				$location.path('order');
 			}
 		}, function errorCallback(response){
-
+			console.log(response);
 		});
 	}
 });
@@ -186,5 +194,9 @@ angularCigars.config(function($routeProvider) {
     }).when('/checkout', {
         templateUrl: "checkout.html",
         controller: 'cigarController'
+    }).when('/payment', {
+        templateUrl: "payment.html",
+        controller: 'cigarController'
     })
 });
+

@@ -5,7 +5,6 @@
       <div class="col-sm-12 orderHeading">
         <h1 class="orderText">Tell us what you want</h1>
         <h4>Shipping is free and you can skip any week</h4>
-        <h3>{{$scope.shape}}</h3>
       </div>
     </div>
     <div class="row">
@@ -39,7 +38,7 @@
       <div class="col-sm-12 customOrder">
         <h3>Choose the flavor</h3>
         <div class="form-group col-sm-4 col-sm-offset-4">
-          <select class="form-control selector">
+          <select class="form-control selector" ng-model='flavor'>
             <option>Dark/Robust</option>
             <option>Medium</option>
             <option>Light</option>
@@ -49,7 +48,7 @@
       <div class="col-sm-12">
         <h3>Choose the length of the smoke</h3>
         <div class="form-group col-sm-4 col-sm-offset-4">
-          <select class="form-control">
+          <select class="form-control" ng-model='smokeLength'>
             <option>1hr</option>
             <option>45min - 1hr</option>
             <option>>45min</option>
@@ -59,7 +58,7 @@
       <div class="col-sm-12">
         <h3>Choose shape</h3>
         <div class="form-group col-sm-4 col-sm-offset-4">
-          <select class="form-control">
+          <select class="form-control" ng-model='shape'>
             <option>Corona</option>
             <option>Petit Corona</option>
             <option>Churchill</option>
@@ -79,7 +78,7 @@
       <div class="col-sm-12">
         <h3>How often would you like them</h3>
         <div class="form-group col-sm-4 col-sm-offset-4">
-          <select class="form-control">
+          <select class="form-control" ng-model="frequency">
             <option>Once a week</option>
             <option>Every other week</option>
             <option>Once a month</option>

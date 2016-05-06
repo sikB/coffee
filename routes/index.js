@@ -26,15 +26,15 @@ router.get('/getUserData', function(req,res,next){
 
 router.post('/delivery', function(req,res,next){
 	Account.update(
-		{token: req.body.token},
+		{token: req.body.token}, //what its looking for (ID)
 		{
 			fullName: req.body.fullName,
 			address: req.body.address,
 			address2: req.body.address2,
 			city: req.body.city,
 			state: req.body.state,
-			zip: req.body.zip,
-			deliveryDate: req.body.deliveryDate
+			zipCode: req.body.zipCode,
+			date: req.body.date
 		},
 		{multi: true},
 		function(err, doc){
@@ -49,16 +49,17 @@ router.post('/delivery', function(req,res,next){
 
 router.post('/order', function(req,res,next){
 	var quantity = req.body.quantity;
+	console.log(req.body);
 	Account.update(
 		{token: req.body.token},
 		{quantity: quantity,
-		flavor: req.body.flavor.option,
-		smokeLength: req.body.smokeLength.option,
-		shape: req.body.shape.option,
+		flavor: req.body.flavor,
+		smokeLength: req.body.smokeLength,
+		shape: req.body.shape,
 		frequency: req.body.frequency},
 		{multi: true}, function(err,doc){
 		if(doc.ok == 1){
-			req.json({success: 'updated'});
+			res.json({success: 'updated'});
 		}else{
 			res.json({failure: 'failedUpdate'});
 		}
