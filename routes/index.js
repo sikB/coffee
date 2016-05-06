@@ -8,6 +8,63 @@ var randToken = require('rand-token');
 
 mongoose.connect(mongoUrl);
 
+router.get('/getUserData', function(req,res,next){
+	if(req.query.token == null){
+		res.json({failure: "noToken"});
+	}else{
+		Account.findOne({
+			token: req.query.token
+		}, function(err, doc){
+			if(doc == null){
+				res.json({failure: 'badToken'})
+			}else{
+				res.json(doc);
+			}
+		})
+	}
+})
+
+router.post('/delivery', function(req,res,next){
+	Account.update(
+		{token: req.body.token},
+		{
+			fullName: req.body.fullName,
+			address: req.body.address,
+			address2: req.body.address2,
+			city: req.body.city,
+			state: req.body.state,
+			zip: req.body.zip,
+			deliveryDate: req.body.deliveryDate
+		},
+		{multi: true},
+		function(err, doc){
+			if(doc.ok == 1){
+				res.json({success: 'updated'});
+			}else{
+				res.json({failure: 'failedUpdate'});
+			}
+		}
+		);
+});
+
+router.post('/order', function(req,res,next){
+	var quantity = req.body.quantity;
+	Account.update(
+		{token: req.body.token},
+		{quantity: quantity,
+		flavor: req.body.flavor.option,
+		smokeLength: req.body.smokeLength.option,
+		shape: req.body.shape.option,
+		frequency: req.body.frequency},
+		{multi: true}, function(err,doc){
+		if(doc.ok == 1){
+			req.json({success: 'updated'});
+		}else{
+			res.json({failure: 'failedUpdate'});
+		}
+	});
+});
+
 router.post('/register', function(req,res,next){
 	// res.json(req.body)
 	var userName = req.body.userName;
@@ -15,7 +72,8 @@ router.post('/register', function(req,res,next){
 	var password2 = req.body.password2;
 	var emailAddress = req.body.emailAddress;
 	if(password == password2){
-		var hashedPass = bcrypt.hashSync(req.body.password);
+		var token = randToken.generate(32);
+		var hashedPass = bcrypt.hashSync(password);
 		var newAccount = new Account({
 			userName: userName,
 			password: hashedPass,
@@ -23,7 +81,6 @@ router.post('/register', function(req,res,next){
 			token: token
 		});
 		newAccount.save();
-		var token = randToken.generate(32);
 		res.json({
 			success: 'added',
 			token: token

@@ -1,83 +1,94 @@
 <body>
 	<div class="container-fluid orderPage">
-  <div class="row">
-    <div class="col-sm-12 orderHeading">
-      <h1 class="orderText">Tell us what you want</h1>
-      <h4>Shipping is free and you can skip any week</h4>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4 quantity col-sm-offset-2">
-      <h1>Single Weekly Plan</h1>
-      <h3>For the smoker who enjoys cigars alone</h3><img src="images/colors.jpeg" class="five"/>
-      <p>Cigars a day: 1</p>
-      <p>Price per Cigar: $4</p>
-      <p>Weekly total: $20</p>
-      <a href="/#/delivery">
-        <button type="button" ng-submit="orderSingle()" class="btn btn-success">Order this Deal</button>
-      </a>
-    </div>
-    <div class="col-sm-4 bulk">
-      <h1>Party Weekly Plan</h1>
-      <h3>For the smoker who likes to share with friends</h3><img src="images/bulker.jpg" class="bulker"/>
-      <p>Cigars a day: 4</p>
-      <p>Price per Cigar: $3</p>
-      <p>Weekly total: $60</p>
-      <a href="/#/delivery">
-        <button type="button" ng-submit="partyPlan()" class="btn btn-success">Order this Deal</button>
-      </a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 customHeader">
-      <h1>Or choose a custom order!</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 customOrder">
-      <h3>Choose the flavor</h3>
-      <div class="form-group col-sm-4 col-sm-offset-4">
-        <select class="form-control selector">
-          <option>Dark/Robust</option>
-          <option>Medium</option>
-          <option>Light</option>
-        </select>
+    <!-- <form role="form" ng-submit='custom()' id='order-form' name='order'> -->
+    <div class="row">
+      <div class="col-sm-12 orderHeading">
+        <h1 class="orderText">Tell us what you want</h1>
+        <h4>Shipping is free and you can skip any week</h4>
+        <h3>{{$scope.shape}}</h3>
       </div>
     </div>
-    <div class="col-sm-12">
-      <h3>Choose the length of the smoke</h3>
-      <div class="form-group col-sm-4 col-sm-offset-4">
-        <select class="form-control">
-          <option>1hr</option>
-          <option>45min - 1hr</option>
-          <option>>45min</option>
-        </select>
+    <div class="row">
+      <div class="col-sm-4 quantity col-sm-offset-2">
+        <h1>Single Weekly Plan</h1>
+        <h3>For the smoker who enjoys cigars alone</h3><img src="images/colors.jpeg" class="five"/>
+        <p>Cigars a day: 1</p>
+        <p>Price per Cigar: $4</p>
+        <p>Weekly total: $20</p>
+        <a href="/#/delivery">
+          <button type="button" ng-click="orderSingle()" class="btn btn-success">Order this Deal</button>
+        </a>
+      </div>
+      <div class="col-sm-4 bulk">
+        <h1>Party Weekly Plan</h1>
+        <h3>For the smoker who likes to share with friends</h3><img src="images/bulker.jpg" class="bulker"/>
+        <p>Cigars a day: 4</p>
+        <p>Price per Cigar: $3</p>
+        <p>Weekly total: $60</p>
+        <a href="/#/delivery">
+          <button type="button" ng-click="partyPlan()" class="btn btn-success">Order this Deal</button>
+        </a>
       </div>
     </div>
-    <div class="col-sm-12">
-      <h3>Choose shape</h3>
-      <div class="form-group col-sm-4 col-sm-offset-4">
-        <select class="form-control">
-          <option>Corona</option>
-          <option>Petit Corona</option>
-          <option>Churchill</option>
-          <option>Robusto</option>
-          <option>Corona Gorda</option>
-          <option>Double Corona</option>
-          <option>Panetela</option>
-          <option>Lonsdale</option>
-          <option>Pyramid</option>
-          <option>Belicoso</option>
-          <option>Torpedo</option>
-          <option>Perfecto</option>
-          <option>Culebra</option>
-        </select>
+    <div class="row">
+      <div class="col-sm-12 customHeader">
+        <h1>Or choose a custom order!</h1>
       </div>
     </div>
-    <a href="/#/delivery">
-      <button type="button" class="btn btn-success">Order Custom Deal</button>
-    </a>
-  </div>
+    <div class="row">
+      <div class="col-sm-12 customOrder">
+        <h3>Choose the flavor</h3>
+        <div class="form-group col-sm-4 col-sm-offset-4">
+          <select class="form-control selector">
+            <option>Dark/Robust</option>
+            <option>Medium</option>
+            <option>Light</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <h3>Choose the length of the smoke</h3>
+        <div class="form-group col-sm-4 col-sm-offset-4">
+          <select class="form-control">
+            <option>1hr</option>
+            <option>45min - 1hr</option>
+            <option>>45min</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <h3>Choose shape</h3>
+        <div class="form-group col-sm-4 col-sm-offset-4">
+          <select class="form-control">
+            <option>Corona</option>
+            <option>Petit Corona</option>
+            <option>Churchill</option>
+            <option>Robusto</option>
+            <option>Corona Gorda</option>
+            <option>Double Corona</option>
+            <option>Panetela</option>
+            <option>Lonsdale</option>
+            <option>Pyramid</option>
+            <option>Belicoso</option>
+            <option>Torpedo</option>
+            <option>Perfecto</option>
+            <option>Culebra</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <h3>How often would you like them</h3>
+        <div class="form-group col-sm-4 col-sm-offset-4">
+          <select class="form-control">
+            <option>Once a week</option>
+            <option>Every other week</option>
+            <option>Once a month</option>
+          </select>
+        </div>
+      </div>
+        <button type="button" ng-click='custom()'class="btn btn-success">Order Custom Deal</button>
+    </div>
+  <!-- </form> -->
 </div>
 </body>
 </html>
