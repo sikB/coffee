@@ -11,11 +11,11 @@
 				<div class="col-sm-6 choices col-sm-offset-3">
 				<h3 class="choicesHeader">Choices</h3>
 					<p class="col-sm-4">Type</p>
-					<p class="col-sm-4 col-sm-offset-3">{{shape}}</p>
+					<p class="col-sm-4 col-sm-offset-3" ng-model='shape'>{{shape}}</p>
 					<p class="col-sm-4">Frequency of Delivery</p>
 					<p class="col-sm-4 col-sm-offset-3">{{frequency}}</p>
 					<p class="col-sm-4">Cigars a week</p>
-					<p class="col-sm-4 col-sm-offset-3">{{numberCigars}}</p>
+					<p class="col-sm-4 col-sm-offset-3">{{flavor}}</p>
 				</div>
 			</div>
 		</div>
@@ -55,18 +55,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-5 checkout-buttons">
-				<!-- <button type="button" ng-click='checkOut()' class="btn btn-primary">Pay with card</button> -->
-		<form action="" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_xUwaUiQX4cjUc70hG3kFQ7iB"
-    data-amount="999"
-    data-name="Demo Site"
-    data-description="Widget"
-    data-image="/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</form>
+				<button type="button" ng-click='checkOut()' class="btn btn-primary">Pay with card</button>
 				<button type="button" class="btn btn-danger">Cancel</button>
 			</div>
 		</div>

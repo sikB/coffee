@@ -17,54 +17,6 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 		console.log(response.status);
 	}
 	});
-// }
-
-	// $scope.shape = [
-	// 	  {option: 'Corona'},
- //          {option: 'Petit Corona'},
- //          {option: 'Churchill'},
- //          {option: 'Robusto'},
- //          {option:'Corona Gorda'},
- //          {option: 'Double Corona'},
- //          {option:'Panetela'},
- //          {option: 'Lonsdale'},
- //          {option: 'Pyramid'},
- //          {option:'Belicoso'},
- //          {option: 'Torpedo'},
- //          {option:'Perfecto'},
- //          {option: 'Culebra'}
-	// ];
-
-	// $scope.flavor = [
-	// {option: 'Dark/Robust'},
-	// {option: 'Medium'},
-	// {option: 'Light'}
-	// ];
-
-	// $scope.smokeLength = [
-	// 	{option: "1hr"},
-	// 	{option: '45min - 1hr'},
-	// 	{option: '>45min'}
-	// ];
-
-	// $scope.frequency = [
-	// 	{option: 'Once a week'},
-	// 	{option: "Every other week"},
-	// 	{option: "Once a month"}
-	// ];
-
-	// $scope.flavor = $cookies.get('flavor');
-	// $scope.quantity = $cookies.get('quantity');
-	// $scope.shape = $cookies.get('shape');
-	// $scope.smokeLength = $cookies.get('smokeLength');
-	// $scope.fullName = $cookies.get('fullName');
-	// $scope.address = $cookies.get('address');
-	// $scope.address2 = $cookies.get('address2');
-	// $scope.city = $cookies.get('city');
-	// $scope.state = $cookies.get('state');
-	// $scope.zip = $cookies.get('zip');
-	// $scope.deliveryDate = $cookies.get('deliveryDate');
-	// $scope.total = Number($scope.quantity) * 20.00;
 
 	$scope.proceed2Checkout = function(){
 			$http.post(apiUrl + 'delivery',{

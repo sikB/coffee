@@ -1,6 +1,6 @@
 <div class="stripe1">
 form
-	<form action="" method="POST">
+	<form action="http://localhost:3000/payment" method="POST">
 	  <script
 	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 	    data-key="pk_test_xUwaUiQX4cjUc70hG3kFQ7iB"
@@ -11,4 +11,7 @@ form
 	    data-locale="auto">
 	  </script>
 	</form>
+	<input type="hidden" name="stripeAmount" value="40">
+	<input type="hidden" name="stripeEmail" value="testEmail@email.com">
+
 </div>
