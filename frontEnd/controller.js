@@ -9,17 +9,71 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 	$http.get(apiUrl + 'getUserData?token=' + $cookies.get('token'),{
 	}).then(function successCallback(response){
 		if(response.data.failure == 'badToken'){
-			$location.path('login');
+			$location.path('register');
 		}else{
-		$scope.userOrder = response.data
+		$scope.userOrder = response.data;
+		$scope.fullName = response.data.fullName;
+		$scope.address = response.data.address;
+		$scope.address2 = response.data.address2;
+		$scope.city = response.data.city;
+		$scope.state = response.data.state;
+		$scope.zipCode = response.data.zipCode;
+		$scope.date = response.data.date;
+		$scope.flavor = response.data.flavor;
+		$scope.smokeLength = response.data.smokeLength;
+		$scope.shape = response.data.shape;
+		$scope.frequency = response.data.frequency;
+
+		console.log(response.data.fullName);
 		// response.data; use this instead of the below because i only have one controller
 	} function errorCallback(response){
 		console.log(response.status);
 	}
 	});
 
+	// $scope.checkOut = function(){
+	// 		$http.post(apiUrl + 'checkout',{
+	// 			token: $cookies.get('token'),
+	// 			fullName: $cookies.get('fullName'),
+	// 			address: $cookies.get('address'),
+	// 			address2 : $cookies.get('address2'),
+	// 			city: $cookies.get('city'),
+	// 			state: $cookies.get('state'),
+	// 			zipCode: $cookies.get('zipCode'),
+	// 			date: $cookies.get('date'),
+	// 			flavor: $cookies.get('flavor'),
+	// 			smokeLength: $cookies.get('smokeLength'),
+	// 			shape: $cookies.get('shape'),
+	// 			frequency: $cookies.get('frequency')
+	// 	}).then(function successCallback(response){
+	// 		if (response.data.failure == 'failedUpdate'){
+	// 				// invalid token, so redirect to login page
+	// 				$location.path('order');
+	// 			} else if (response.data.success == 'updated') {
+	// 				// put the delivery info into cookies for temporary storage
+	// 				$cookies.put('fullName', $scope.fullName);
+	// 				console.log($scope.fullName);
+	// 				$cookies.put('address', $scope.address);
+	// 				$cookies.put('address2', $scope.address2);
+	// 				$cookies.put('city', $scope.city);
+	// 				$cookies.put('state', $scope.state);
+	// 				$cookies.put('zipCode', $scope.zipCode);
+	// 				$cookies.put('date', $scope.date);
+	// 				$cookies.put('flavor', $scope.flavor);
+	// 				$cookies.put('smokeLength', $scope.smokeLength);
+	// 				$cookies.put('shape', $scope.shape);
+	// 				$cookies.put('frequency', $scope.frequency);
+
+	// 				//redirect to checkout page
+	// 				// $location.path('payment');
+	// 			}
+	// 	}, function errorCallback(status){
+	// 		console.log(status);
+	// 	});
+	// };
+
 	$scope.proceed2Checkout = function(){
-			$http.post(apiUrl + 'delivery',{
+			$http.post((apiUrl + 'delivery') && (apiUrl + 'checkout'),{
 				token: $cookies.get('token'),
 				fullName: $scope.fullName,
 				address: $scope.address,
@@ -27,7 +81,11 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 				city: $scope.city,
 				state: $scope.state,
 				zipCode: $scope.zipCode,
-				date: $scope.date
+				date: $scope.date,
+				flavor: $scope.flavor,
+				smokeLength: $scope.smokeLength,
+				shape: $scope.shape,
+				frequency: $scope.frequency
 		}).then(function successCallback(response){
 			if (response.data.failure == 'failedUpdate'){
 					// invalid token, so redirect to login page
@@ -35,12 +93,21 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 				} else if (response.data.success == 'updated') {
 					// put the delivery info into cookies for temporary storage
 					$cookies.put('fullName', $scope.fullName);
+					console.log('this is ' + $scope.fullName);
 					$cookies.put('address', $scope.address);
 					$cookies.put('address2', $scope.address2);
 					$cookies.put('city', $scope.city);
 					$cookies.put('state', $scope.state);
 					$cookies.put('zipCode', $scope.zipCode);
 					$cookies.put('date', $scope.date);
+					$cookies.put('flavor', $scope.flavor);
+					console.log('this is ' + $scope.flavor);
+					$cookies.put('smokeLength', $scope.smokeLength);
+					console.log('this is ' + $scope.smokeLength);
+					$cookies.put('shape', $scope.shape);
+					console.log('this is ' + $scope.shape);
+					$cookies.put('frequency', $scope.frequency);
+					console.log('this is ' + $scope.frequency);
 
 					//redirect to checkout page
 					$location.path('checkout');
