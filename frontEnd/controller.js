@@ -23,6 +23,7 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 		$scope.smokeLength = response.data.smokeLength;
 		$scope.shape = response.data.shape;
 		$scope.frequency = response.data.frequency;
+		enableStripe($scope.total);
 
 		console.log(response.data.fullName);
 		// response.data; use this instead of the below because i only have one controller
@@ -31,46 +32,32 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 	}
 	});
 
-	// $scope.checkOut = function(){
-	// 		$http.post(apiUrl + 'checkout',{
-	// 			token: $cookies.get('token'),
-	// 			fullName: $cookies.get('fullName'),
-	// 			address: $cookies.get('address'),
-	// 			address2 : $cookies.get('address2'),
-	// 			city: $cookies.get('city'),
-	// 			state: $cookies.get('state'),
-	// 			zipCode: $cookies.get('zipCode'),
-	// 			date: $cookies.get('date'),
-	// 			flavor: $cookies.get('flavor'),
-	// 			smokeLength: $cookies.get('smokeLength'),
-	// 			shape: $cookies.get('shape'),
-	// 			frequency: $cookies.get('frequency')
-	// 	}).then(function successCallback(response){
-	// 		if (response.data.failure == 'failedUpdate'){
-	// 				// invalid token, so redirect to login page
-	// 				$location.path('order');
-	// 			} else if (response.data.success == 'updated') {
-	// 				// put the delivery info into cookies for temporary storage
-	// 				$cookies.put('fullName', $scope.fullName);
-	// 				console.log($scope.fullName);
-	// 				$cookies.put('address', $scope.address);
-	// 				$cookies.put('address2', $scope.address2);
-	// 				$cookies.put('city', $scope.city);
-	// 				$cookies.put('state', $scope.state);
-	// 				$cookies.put('zipCode', $scope.zipCode);
-	// 				$cookies.put('date', $scope.date);
-	// 				$cookies.put('flavor', $scope.flavor);
-	// 				$cookies.put('smokeLength', $scope.smokeLength);
-	// 				$cookies.put('shape', $scope.shape);
-	// 				$cookies.put('frequency', $scope.frequency);
-
-	// 				//redirect to checkout page
-	// 				// $location.path('payment');
-	// 			}
-	// 	}, function errorCallback(status){
-	// 		console.log(status);
-	// 	});
-	// };
+	function enableStripe(total){
+        var total = total * 100;
+        var handler = StripeCheckout.configure({
+            key: 'pk_test_xUwaUiQX4cjUc70hG3kFQ7iB',
+            image: '/images/logo2.png',
+            locale: 'auto',
+            token: function(token) {
+              // You can access the token ID with `token.id`.
+              // Get the token ID to your server-side code for use.
+            }    
+        });    
+        $('#paymentButton').on('click', function(e) {
+            // Open Checkout with further options:
+            handler.open({
+                name: 'Cigars"r"us',
+                description: 'Cigars',
+                amount: total
+            });
+            e.preventDefault();
+        });    
+          // Close Checkout on page navigation:
+          $(window).on('popstate', function() {
+            handler.close();
+            
+          });
+    };
 
 	$scope.proceed2Checkout = function(){
 			$http.post((apiUrl + 'delivery') && (apiUrl + 'checkout'),{
