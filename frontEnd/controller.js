@@ -23,7 +23,7 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 		$scope.smokeLength = response.data.smokeLength;
 		$scope.shape = response.data.shape;
 		$scope.frequency = response.data.frequency;
-		enableStripe($scope.total);
+		// enableStripe($scope.total);
 
 		console.log(response.data.fullName);
 		// response.data; use this instead of the below because i only have one controller
