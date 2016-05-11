@@ -55,8 +55,9 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-5 checkout-buttons">
-				<button type="button" id="paymentButton" class="btn btn-primary">Pay with card</button>
-				<button type="button" class="btn btn-danger">Cancel</button>
+				<button type="button" id="submitButton"  ng-click='submitToStripe()'class="btn btn-primary">Pay with card</button>
+				<a href="/#/order">
+					<button type="button" class="btn btn-danger">Cancel</button></a>
 			</div>
 		</div>
 	</div>

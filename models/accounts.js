@@ -20,7 +20,9 @@ var Account = new Schema({
 	smokeLength: String,
 	shape: String,
 	singlePlan: String,
-	partyPlan: String
+	partyPlan: String,
+	total: Number,
+	quantitiy: Number
 });
 
 module.exports = mongoose.model('Account', Account);

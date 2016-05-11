@@ -32,32 +32,70 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 	}
 	});
 
-	function enableStripe(total){
-        var total = total * 100;
-        var handler = StripeCheckout.configure({
-            key: 'pk_test_xUwaUiQX4cjUc70hG3kFQ7iB',
-            image: '/images/logo2.png',
-            locale: 'auto',
-            token: function(token) {
+	$scope.$watch(function(){
+        return $location.path();
+    },
+    function(a){
+        // console.log(a);
+    });
+
+	// function enableStripe(total){
+ //        var total = Number(total * 100);
+ //        console.log(total);
+ //        var handler = StripeCheckout.configure({
+ //            key: 'pk_test_xUwaUiQX4cjUc70hG3kFQ7iB',
+ //            image: '/images/logo2.png',
+ //            locale: 'auto',
+ //            token: function(token) {
               // You can access the token ID with `token.id`.
               // Get the token ID to your server-side code for use.
-            }    
-        });    
-        $('#paymentButton').on('click', function(e) {
+        //     }    
+        // });    
+        // $('#submitButton').on('click', function(e) {
             // Open Checkout with further options:
-            handler.open({
-                name: 'Cigars"r"us',
-                description: 'Cigars',
-                amount: total
-            });
-            e.preventDefault();
-        });    
+     //        handler.open({
+     //            name: 'Cigars',
+     //            description: 'Purchasing from Cigars',
+     //            amount: $scope.total,
+     //            flavor: $scope.flavor
+     //        }); console.log('test');
+     //        $location.path('/');
+  			// console.log('test2');
+     //    });    
           // Close Checkout on page navigation:
-          $(window).on('popstate', function() {
-            handler.close();
-            
-          });
-    };
+    //       $(window).on('popstate', function() {
+    //         handler.close();
+
+    //       });
+    // };
+
+    $scope.submitToStripe = function(){
+		var handler = StripeCheckout.configure({
+		   	key: 'pk_test_xUwaUiQX4cjUc70hG3kFQ7iB',
+		   	image: '/images/logo2.png',
+		   	locale: 'auto',
+		   	token: function(token) {
+		   		console.log("The token Id is: ");
+		   		console.log(token.id);
+				$http.post(apiUrl + 'checkout', {
+					amount: $scope.total,
+					stripeToken: token.id,
+					token: $cookies.get('token')
+					//This will pass amount, stripeToken, and token to /payment
+				}).then(function successCallback(response){
+					$location.path('/thankYou');
+					//if a response of any kind comes back from /payment, it will foward to /thankYou
+					//You can add logic here to determine if the Stripe charge was successful
+				}, function errorCallback(response){
+				});
+		   	}	
+		});			
+	    handler.open({
+	    	name: 'Cigar',
+	      	description: 'Buying from Cigar store',
+	      	amount: $scope.total
+	    });		
+	}
 
 	$scope.proceed2Checkout = function(){
 			$http.post((apiUrl + 'delivery') && (apiUrl + 'checkout'),{
@@ -200,9 +238,8 @@ angularCigars.config(function($routeProvider) {
     }).when('/checkout', {
         templateUrl: "checkout.html",
         controller: 'cigarController'
-    }).when('/payment', {
-        templateUrl: "payment.html",
-        controller: 'cigarController'
-    })
+    }).otherwise({
+		redirectTo: '/'
+	})
 });
 
