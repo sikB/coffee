@@ -188,7 +188,7 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 				$cookies.put('token', response.data.token);
 				$cookies.put('userName', $scope.userName);
 				$scope.loggedIn = true;
-				$location.path('/order');
+				$location.path('order');
 			}else if(response.data.failure == 'noUser'){
 				$scope.errorMessage = 'No such user found'
 			}else if( response.data.failure == 'badPassword'){
@@ -211,7 +211,7 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 			}else if(response.data.success == "added"){
 				$cookies.put('token', response.data.token);
 				$cookies.put('userName', $scope.userName);
-				$location.path('#/order');
+				$location.path('order');
 			}
 		}, function errorCallback(response){
 			console.log(response);
