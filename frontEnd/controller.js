@@ -1,6 +1,6 @@
 var angularCigars = angular.module('angularCigars', ['ngRoute', 'ngCookies']);
 angularCigars.controller('cigarController', function($scope, $http, $location, $cookies){
-	var apiUrl = 'http://localhost:3000/';
+	var apiUrl = 'http://bogdansportfolio.com/coffee/frontEnd/';
 
 	// if($location.path() != 'register' || 'login'){
 	// 	$location.path('homePage');
