@@ -77,7 +77,7 @@ angularCigars.controller('cigarController', function($scope, $http, $location, $
 		   	token: function(token) {
 		   		console.log("The token Id is: ");
 		   		console.log(token.id);
-				$http.post(apiUrl + 'checkout', {
+				$http.post(apiUrl + 'payment', {
 					amount: $scope.total,
 					stripeToken: token.id,
 					token: $cookies.get('token')
